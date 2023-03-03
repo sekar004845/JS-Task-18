@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete and edit in js</title>
+	<script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+	<style>
+		*{
+			box-sizing:border-box;
+		}
+		.container{
+			margin:0 auto;
+			width:50%;
+		}
+		.add,.sub{
+			margin-top:100px;
+			padding:40px;
+			height:30vh;
+			width:50%;
+			box-shadow:0 0 10px dodgerblue;
+		}
+		iconify-icon{
+			font-size:22px;
+			margin-left:10px;
+			color:red;
+		}
+		.insert{
+			display:flex;
+			flex-wrap:wrap;
+			align-items:center;
+		}
+		textarea{
+			border:1px soild #ccc;
+			height:80px;
+			width:100%;
+			padding:20px;
+		}
+		button{
+			width:100%;
+			background-color:lightgreen;
+			color:#fff;
+			font-size:18px;
+			border:0;
+			padding:10px;
+			margin-top:10px;
+		}
+		h3{
+			color:red;
+		}
+		.content{
+			width:70%;
+			flex-wrap:wrap;
+		}
+		#post .insert p{
+			color:orange;
+			font-size:20px;
+		}
+		.option{
+			width:30%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+	 <h1>Delete and Edit in JavaScript</h1>
+		<div class="add">
+			<form>
+				<textarea name="delax" id="delax" placeholder="Enter you name" maxlength="30"></textarea><br>
+				<button id="submit">POST</button>
+			</form>
+		</div>
+		<div class="sub">
+			<h3>Your sweet name is print</h3>
+			<div id="gate">
+				
+			</div>
+		</div>
+	</div>
+	<script>
+			let form = document.querySelector("form");
+		let delax = document.getElementById("delax");
+		let gate = document.getElementById("gate");
+		form.addEventListener("submit",function(e){
+			e.preventDefault();
+			readgate();
+		});
+		let data = {};
+		function readgate(){
+			data['text']=delax.value;
+			creategate();
+		}
+		function creategate(){
+			gate.innerHTML =`<div class="insert">
+			<p class="content">${data.text}</p>
+			<span class="option">
+				<iconify-icon onclick="edit(this)" icon="material-symbols:edit-square-outline-rounded"></iconify-icon>
+				<iconify-icon onclick="clean(this)" icon="mdi:delete"></iconify-icon>
+			</span>
+			</div>`
+			delax.value =" ";
+		}
+		function edit(e){
+			delax.value=e.parentElement.previousElementSibling.innerHTML;
+			e.parentElement.parentElement.remove();
+		}
+		function clean(e){
+			e.parentElement.parentElement.remove();
+		}
+	</script>
+</body>
+</html>
